@@ -54,6 +54,7 @@
             android:layout_height="wrap_content"
             android:text="Result"
             android:textSize="24sp"
+            android:id="@+id/result_tv"
             android:gravity="center"
             />
 </LinearLayout>

@@ -18,7 +18,7 @@ Kotlin is a statically typed programming language that runs on the Java Virtual 
 (Here, you can provide a brief description of each project in the repository. For example:)
 
 - **Project 1**: Calculator
-- **Project 2**: 
+- **Project 2**: Note Application
 - ...
 
 ## Getting Started

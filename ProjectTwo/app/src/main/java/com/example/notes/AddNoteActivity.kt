@@ -2,6 +2,7 @@ package com.example.notes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.notes.databinding.ActivityAddNoteBinding
 
 class AddNoteActivity : AppCompatActivity() {
@@ -16,5 +17,13 @@ class AddNoteActivity : AppCompatActivity() {
 
         db = NotesDatabaseHelper(this)
 
+        binding.saveButton.setOnClickListener{
+            val title = binding.titleEditText.text.toString()
+            val content = binding.contentEditText.text.toString()
+            val note = Note(0, title, content)
+            db.insertNote(note)
+            finish()
+            Toast.makeText(this, "Note Saved Successfully" , Toast.LENGTH_SHORT).show()
+        }
     }
 }

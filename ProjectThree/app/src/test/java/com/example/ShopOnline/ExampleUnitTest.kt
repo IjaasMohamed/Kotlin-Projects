@@ -1,4 +1,4 @@
-package com.example.MusicApp
+package com.example.ShopOnline
 
 import org.junit.Test
 

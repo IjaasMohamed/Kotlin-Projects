@@ -1,4 +1,4 @@
-package com.example.MusicApp
+package com.example.ShopOnline
 
 data class Data(
     val album: Album,

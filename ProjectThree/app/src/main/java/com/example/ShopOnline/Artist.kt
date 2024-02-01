@@ -1,4 +1,4 @@
-package com.example.MusicApp
+package com.example.ShopOnline
 
 data class Artist(
     val id: Int,

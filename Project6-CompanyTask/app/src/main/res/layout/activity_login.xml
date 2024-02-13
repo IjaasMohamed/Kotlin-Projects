@@ -6,12 +6,62 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".LoginActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@drawable/vintage_logo"
-        app:srcCompat="@drawable/vintage_logo"
-        android:layout_height="150dp" />
+        app:srcCompat="@drawable/vintage_logo"/>
+    
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_layout_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_input_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Please enter email"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_layout_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Please enter password"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:text="Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_register"
+        android:layout_marginTop="8dp"
+        android:padding="16dp"
+        android:text="Register Account?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        />
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -47,6 +47,9 @@ class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAM
         value.put(COL_EMPLOYEE_EMAIL, employee.email)
         value.put(COL_EMPLOYEE_ADDRESS, employee.address)
         value.put(COL_EMPLOYEE_PHONE, employee.phone)
+
+        db.insert(TABLE_EMPLOYEE, null,value)
+        db.close()
     }
     fun loginUser(email: String, password: String): Boolean {
         val db = this.readableDatabase

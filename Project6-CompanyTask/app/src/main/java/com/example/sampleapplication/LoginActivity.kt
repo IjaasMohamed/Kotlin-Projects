@@ -36,6 +36,7 @@ class LoginActivity : AppCompatActivity() {
                 val isSuccess = db.loginUser(email, password)
                 if (isSuccess) {
                     Toast.makeText(this, "You are Logged in!", Toast.LENGTH_SHORT).show()
+                    navigateToEmployeeActivity() // Call the navigateToEmployeeActivity function
                 }
             } else {
                 Toast.makeText(this, "Invalid Email ...!", Toast.LENGTH_SHORT).show()
@@ -43,5 +44,11 @@ class LoginActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Please enter all fields...!", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun navigateToEmployeeActivity() {
+        val intent = Intent(this, EmployeeActivity::class.java)
+        startActivity(intent)
+        finish() // Finish the LoginActivity to prevent going back to it using the back button
     }
 }

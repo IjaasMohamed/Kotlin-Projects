@@ -8,16 +8,25 @@ import android.database.sqlite.SQLiteOpenHelper
 class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val query = "CREATE TABLE $TABLE_USER (" +
+        val queryUser = "CREATE TABLE $TABLE_USER (" +
                 "$COL_USER_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$COL_USER_NAME TEXT, " +
                 "$COL_USER_EMAIL TEXT, " +
                 "$COL_USER_PASSWORD TEXT)"
-        db?.execSQL(query)
+        db?.execSQL(queryUser)
+
+        val queryEmployee = "CREATE TABLE $TABLE_EMPLOYEE (" +
+                "$COL_EMPLOYEE_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "$COL_EMPLOYEE_NAME TEXT, " +
+                "$COL_EMPLOYEE_EMAIL TEXT, " +
+                "$COL_EMPLOYEE_ADDRESS TEXT, " +
+                "$COL_EMPLOYEE_PHONE TEXT)"
+        db?.execSQL(queryEmployee)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL("DROP TABLE IF EXISTS $TABLE_USER")
+        db?.execSQL("DROP TABLE IF EXISTS $TABLE_EMPLOYEE")
         onCreate(db)
     }
 
@@ -30,6 +39,14 @@ class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAM
 
         db.insert(TABLE_USER, null, value)
         db.close()
+    }
+    fun registerEmployee(employee: Employee){
+        val db = this.writableDatabase
+        val value = ContentValues()
+        value.put(COL_EMPLOYEE_NAME, employee.name)
+        value.put(COL_EMPLOYEE_EMAIL, employee.email)
+        value.put(COL_EMPLOYEE_ADDRESS, employee.address)
+        value.put(COL_EMPLOYEE_PHONE, employee.phone)
     }
     fun loginUser(email: String, password: String): Boolean {
         val db = this.readableDatabase
@@ -59,9 +76,16 @@ class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAM
         private const val DATABASE_VERSION = 1
         private const val DATABASE_NAME = "user.db"
         private const val TABLE_USER = "tbl_user"
+        private const val TABLE_EMPLOYEE = "tbl_employee"
         private const val COL_USER_ID = "user_id"
         private const val COL_USER_NAME= "user_name"
         private const val COL_USER_EMAIL= "user_email"
         private const val COL_USER_PASSWORD="user_password"
+        private const val COL_EMPLOYEE_ID = "employee_id"
+        private const val COL_EMPLOYEE_NAME = "employee_name"
+        private const val COL_EMPLOYEE_EMAIL = "employee_email"
+        private const val COL_EMPLOYEE_ADDRESS = "employee_address"
+        private const val COL_EMPLOYEE_PHONE = "employee_phone"
     }
+
 }

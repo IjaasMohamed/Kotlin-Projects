@@ -6,14 +6,18 @@ import android.widget.Toast
 import com.example.sampleapplication.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityRegisterBinding
-    private lateinit var db : DatabaseHelper
+    private lateinit var binding: ActivityRegisterBinding
+    private lateinit var db: DatabaseHelper // Initialization added here
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnRegister.setOnClickListener{
+        // Initialize the DatabaseHelper
+        db = DatabaseHelper(this)
+
+        binding.btnRegister.setOnClickListener {
             registerUser()
         }
     }
@@ -23,20 +27,16 @@ class RegisterActivity : AppCompatActivity() {
         val email = binding.textInputEmail.text.toString()
         val password = binding.textInputPassword.text.toString()
 
-        if(ValidationUtils.isTextNotEmpty(username) &&
+        if (ValidationUtils.isTextNotEmpty(username) &&
             ValidationUtils.isValidEmail(email) &&
             ValidationUtils.isTextNotEmpty(password)
-
         ) {
-            if(ValidationUtils.isValidEmail(email)){
-                val user = User(username = username, email = email.trim(), password = password)
-                db.registerUser(user)
-                Toast.makeText(this, "User Registered", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Invalid email format", Toast.LENGTH_SHORT).show()
-            }
+            // No need to check email validity again, it's already checked above
+            val user = User(username = username, email = email.trim(), password = password)
+            db.registerUser(user)
+            Toast.makeText(this, "User Registered", Toast.LENGTH_LONG).show()
         } else {
-            Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Please enter all fields or correct email format", Toast.LENGTH_SHORT).show()
         }
     }
 }

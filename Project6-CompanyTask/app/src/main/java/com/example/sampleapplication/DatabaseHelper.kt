@@ -1,5 +1,6 @@
 package com.example.sampleapplication
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -20,6 +21,17 @@ class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAM
         onCreate(db)
     }
 
+    fun registerUser(user: User){
+        val db = this.writableDatabase
+        val value = ContentValues()
+        value.put(COL_USER_NAME, user.username)
+        value.put(COL_USER_EMAIL, user.email)
+        value.put(COL_USER_PASSWORD, user.password)
+
+        db.insert(TABLE_USER, null, value)
+        db.close()
+    }
+
     companion object {
         private const val DATABASE_VERSION = 1
         private const val DATABASE_NAME = "user.db"
@@ -29,5 +41,4 @@ class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAM
         private const val COL_USER_EMAIL= "user_email"
         private const val COL_USER_PASSWORD="user_password"
     }
-
 }

@@ -7,7 +7,7 @@ import com.example.sampleapplication.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var db: DatabaseHelper // Initialization added here
+    private lateinit var db: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +31,6 @@ class RegisterActivity : AppCompatActivity() {
             ValidationUtils.isValidEmail(email) &&
             ValidationUtils.isTextNotEmpty(password)
         ) {
-            // No need to check email validity again, it's already checked above
             val user = User(username = username, email = email.trim(), password = password)
             db.registerUser(user)
             Toast.makeText(this, "User Registered", Toast.LENGTH_LONG).show()

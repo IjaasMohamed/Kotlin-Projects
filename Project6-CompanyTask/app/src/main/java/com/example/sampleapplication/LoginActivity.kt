@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.sampleapplication.databinding.ActivityLoginBinding
 
-
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
@@ -37,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
                 val isSuccess = db.loginUser(email, password)
                 if (isSuccess) {
                     Toast.makeText(this, "You are Logged in!", Toast.LENGTH_SHORT).show()
-                    navigateToEmployeeActivity() // Call the navigateToEmployeeActivity function
+                    navigateToHomeActivity() // Call the navigateToHomeActivity function
                 }
             } else {
                 Toast.makeText(this, "Invalid Email ...!", Toast.LENGTH_SHORT).show()
@@ -47,8 +46,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToEmployeeActivity() {
-        val intent = Intent(this, EmployeeActivity::class.java)
+    private fun navigateToHomeActivity() {
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish() // Finish the LoginActivity to prevent going back to it using the back button
     }

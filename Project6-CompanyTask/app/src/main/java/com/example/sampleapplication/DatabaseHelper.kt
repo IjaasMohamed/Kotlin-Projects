@@ -1,5 +1,6 @@
 package com.example.sampleapplication
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -73,7 +74,30 @@ class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAM
         return cursorCount > 0
     }
 
+    @SuppressLint("Range")
+    fun getAllEmployees(): List<Employee> {
+        val employeeList = mutableListOf<Employee>()
+        val db = this.readableDatabase
+        val query = "SELECT * FROM $TABLE_EMPLOYEE"
+        val cursor = db.rawQuery(query, null)
 
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndex(COL_EMPLOYEE_ID))
+                val name = cursor.getString(cursor.getColumnIndex(COL_EMPLOYEE_NAME))
+                val email = cursor.getString(cursor.getColumnIndex(COL_EMPLOYEE_EMAIL))
+                val address = cursor.getString(cursor.getColumnIndex(COL_EMPLOYEE_ADDRESS))
+                val phone = cursor.getString(cursor.getColumnIndex(COL_EMPLOYEE_PHONE))
+
+                val employee = Employee(id, name, email, address, phone)
+                employeeList.add(employee)
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return employeeList
+    }
 
     companion object {
         private const val DATABASE_VERSION = 1

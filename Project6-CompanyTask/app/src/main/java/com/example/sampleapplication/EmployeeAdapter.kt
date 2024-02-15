@@ -43,5 +43,4 @@ class EmployeeAdapter(private val employeeList: MutableList<Employee>, private v
         fun onEditClick(employee: Employee)
         fun onDeleteClick(employee: Employee)
     }
-
 }

@@ -55,4 +55,17 @@ class EmployeeActivity : AppCompatActivity() {
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
+    private fun updateEmployee(employee: Employee) {
+        db.updateEmployee(employee)
+        showToast("Employee updated successfully")
+        // You can add additional logic here if needed
+    }
+    private fun deleteEmployee(employeeId: Int) {
+        db.deleteEmployee(employeeId)
+        showToast("Employee deleted successfully")
+        // You can add additional logic here if needed
+    }
+
+
 }

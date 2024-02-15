@@ -32,7 +32,7 @@
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"/>
-    
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_layout_email"
         android:layout_width="match_parent"

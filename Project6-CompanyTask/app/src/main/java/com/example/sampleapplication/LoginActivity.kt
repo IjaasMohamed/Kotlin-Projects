@@ -1,6 +1,5 @@
 package com.example.sampleapplication
 
-import HomeActivity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -50,6 +49,6 @@ class LoginActivity : AppCompatActivity() {
     private fun navigateToHomeActivity() {
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
-        finish() // Finish the LoginActivity to prevent going back to it using the back button
+        finish()
     }
 }

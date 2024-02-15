@@ -1,9 +1,13 @@
+package com.example.sampleapplication
+
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sampleapplication.DatabaseHelper
 import com.example.sampleapplication.EmployeeAdapter
 import com.example.sampleapplication.databinding.ActivityHomeBinding
+import android.app.Activity
+
 
 class HomeActivity : AppCompatActivity() {
 

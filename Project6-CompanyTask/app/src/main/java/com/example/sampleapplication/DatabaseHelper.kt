@@ -98,6 +98,28 @@ class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAM
         db.close()
         return employeeList
     }
+    fun updateEmployee(employee: Employee) {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(COL_EMPLOYEE_NAME, employee.name)
+            put(COL_EMPLOYEE_EMAIL, employee.email)
+            put(COL_EMPLOYEE_ADDRESS, employee.address)
+            put(COL_EMPLOYEE_PHONE, employee.phone)
+        }
+        val selection = "$COL_EMPLOYEE_ID = ?"
+        val selectionArgs = arrayOf(employee.id.toString())
+        db.update(TABLE_EMPLOYEE, values, selection, selectionArgs)
+        db.close()
+    }
+
+    fun deleteEmployee(employeeId: Int) {
+        val db = this.writableDatabase
+        val selection = "$COL_EMPLOYEE_ID = ?"
+        val selectionArgs = arrayOf(employeeId.toString())
+        db.delete(TABLE_EMPLOYEE, selection, selectionArgs)
+        db.close()
+    }
+
 
     companion object {
         private const val DATABASE_VERSION = 1

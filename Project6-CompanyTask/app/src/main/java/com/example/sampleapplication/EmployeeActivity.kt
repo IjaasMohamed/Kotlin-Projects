@@ -1,21 +1,21 @@
 package com.example.sampleapplication
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.sampleapplication.databinding.ActivityEmployeeBinding
 
 class EmployeeActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityEmployeeBinding
     private lateinit var db: DatabaseHelper
+    private var employeeId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEmployeeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize DatabaseHelper
         db = DatabaseHelper(this)
 
         val nameEditText = binding.textInputName
@@ -23,6 +23,15 @@ class EmployeeActivity : AppCompatActivity() {
         val addressEditText = binding.textInputAddress
         val phoneEditText = binding.textInputPhone
         val registerButton = binding.btnRegister
+
+        val employee = intent.getSerializableExtra("employee") as? Employee
+        if (employee != null) {
+            nameEditText.setText(employee.name)
+            emailEditText.setText(employee.email)
+            addressEditText.setText(employee.address)
+            phoneEditText.setText(employee.phone)
+            employeeId = employee.id
+        }
 
         registerButton.setOnClickListener {
             val name = nameEditText.text.toString().trim()
@@ -34,38 +43,26 @@ class EmployeeActivity : AppCompatActivity() {
                 ValidationUtils.isValidEmail(email) &&
                 ValidationUtils.isTextNotEmpty(address) &&
                 ValidationUtils.isTextNotEmpty(phone)) {
-                // Create Employee object
-                val employee = Employee(name = name, email = email, address = address, phone = phone)
-                // Register employee
-                registerEmployee(employee)
+
+                val employee = Employee(id = employeeId, name = name, email = email, address = address, phone = phone)
+                if (employeeId == null) {
+                    db.registerEmployee(employee)
+                    showToast("Employee registered successfully")
+                } else {
+                    db.updateEmployee(employee)
+                    showToast("Employee updated successfully")
+                }
+
+                startActivity(Intent(this, HomeActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK))
+                finish()
             } else {
-                // Show error message
                 showToast("Please enter all fields with valid data")
             }
         }
     }
 
-    private fun registerEmployee(employee: Employee) {
-        // Register employee in the database
-        db.registerEmployee(employee)
-        showToast("Employee registered successfully")
-        // You can add additional logic here, like navigating to another activity
-    }
-
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
-
-    private fun updateEmployee(employee: Employee) {
-        db.updateEmployee(employee)
-        showToast("Employee updated successfully")
-        // You can add additional logic here if needed
-    }
-    private fun deleteEmployee(employeeId: Int) {
-        db.deleteEmployee(employeeId)
-        showToast("Employee deleted successfully")
-        // You can add additional logic here if needed
-    }
-
-
 }

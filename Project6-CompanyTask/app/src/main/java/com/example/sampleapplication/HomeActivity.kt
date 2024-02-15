@@ -13,6 +13,7 @@ class HomeActivity : AppCompatActivity(), EmployeeAdapter.EmployeeAdapterListene
     private lateinit var binding: ActivityHomeBinding
     private lateinit var db: DatabaseHelper
     private lateinit var adapter: EmployeeAdapter
+    private lateinit var employeeList: MutableList<Employee>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +22,7 @@ class HomeActivity : AppCompatActivity(), EmployeeAdapter.EmployeeAdapterListene
 
         db = DatabaseHelper(this)
 
-        val employeeList = db.getAllEmployees()
+        employeeList = db.getAllEmployees().toMutableList()
         adapter = EmployeeAdapter(employeeList, this)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
@@ -39,6 +40,7 @@ class HomeActivity : AppCompatActivity(), EmployeeAdapter.EmployeeAdapterListene
 
     override fun onDeleteClick(employee: Employee) {
         employee.id?.let { db.deleteEmployee(it) }
+        employeeList.remove(employee)
         adapter.notifyDataSetChanged()
     }
 }

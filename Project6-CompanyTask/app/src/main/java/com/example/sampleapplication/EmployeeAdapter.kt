@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class EmployeeAdapter(private val employeeList: List<Employee>, private val listener: EmployeeAdapterListener) :
+class EmployeeAdapter(private val employeeList: MutableList<Employee>, private val listener: EmployeeAdapterListener) :
     RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeViewHolder {

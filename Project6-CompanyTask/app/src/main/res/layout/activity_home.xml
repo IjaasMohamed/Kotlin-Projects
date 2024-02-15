@@ -4,51 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".HomeActivity">
 
     <LinearLayout
-        android:background="#322E2E"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:gravity="center"
         android:layout_gravity="center"
+        android:background="#322E2E"
+        android:gravity="center"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="80dp"
             android:layout_height="60dp"
-            android:background="@drawable/vintage_logo"
-            />
+            android:background="@drawable/vintage_logo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome to Employee Details page\nDetails of the employees are displayed here."
-            android:textColor="#EEE"
-            android:textSize="16sp"
-            android:textAlignment="center"
+            android:layout_marginTop="8dp"
             android:paddingTop="16dp"
-            android:layout_marginTop="8dp"/>
+            android:text="Welcome to Employee Details page\nDetails of the employees are displayed here."
+            android:textAlignment="center"
+            android:textColor="#EEE"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="All Employees"
-        android:textColor="#000000"
-        android:textSize="16sp"
         android:layout_margin="16dp"
+        android:layout_marginTop="8dp"
+        android:text="All Employees"
         android:textAlignment="center"
-        android:layout_marginTop="8dp"/>
-    <Button
-        android:id="@+id/btn_create_employee"
-        android:layout_width="wrap_content"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Employee"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"/>
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btn_create_employee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Employee"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/btn_generate_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Generate PDF Report"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -57,7 +72,5 @@
         android:padding="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_employee" />
-
-
 
 </androidx.appcompat.widget.LinearLayoutCompat>

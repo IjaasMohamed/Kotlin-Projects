@@ -50,16 +50,24 @@
 
         <Button
             android:id="@+id/btn_create_employee"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Create Employee"
             android:layout_marginTop="16dp" />
 
         <Button
             android:id="@+id/btn_generate_report"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Generate PDF Report"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp" />
+
+        <Button
+            android:id="@+id/btn_products"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Product Details"
             android:layout_marginTop="16dp"
             android:layout_marginStart="16dp" />
 

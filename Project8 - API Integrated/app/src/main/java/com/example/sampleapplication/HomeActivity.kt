@@ -31,6 +31,10 @@ class HomeActivity : AppCompatActivity(), EmployeeAdapter.EmployeeAdapterListene
         binding.btnCreateEmployee.setOnClickListener {
             startActivity(Intent(this, EmployeeActivity::class.java))
         }
+        binding.btnProducts.setOnClickListener{
+            startActivity(Intent(this, ProductActivity::class.java))
+        }
+
     }
 
     override fun onEditClick(employee: Employee) {

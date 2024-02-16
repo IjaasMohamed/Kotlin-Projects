@@ -18,22 +18,51 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_message"
+                android:id="@+id/tv_barcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="Message"
+                android:text="Barcode"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tv_status_code"
+                android:id="@+id/tv_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="Status Code"
+                android:text="Code"
                 android:textSize="16sp" />
 
+            <TextView
+                android:id="@+id/tv_item_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Sync Time"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_item_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Sync Time"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tv_sync_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Sync Time"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tv_sync_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Sync Time"
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/tv_sync_time"
                 android:layout_width="match_parent"

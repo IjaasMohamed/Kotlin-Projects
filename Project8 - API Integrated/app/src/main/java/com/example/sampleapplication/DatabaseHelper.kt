@@ -3,8 +3,13 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.os.Environment
 import com.example.sampleapplication.Employee
 import com.example.sampleapplication.User
+import com.itextpdf.text.Document
+import com.itextpdf.text.Paragraph
+import com.itextpdf.text.pdf.PdfWriter
+import java.io.FileOutputStream
 
 class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -118,6 +123,30 @@ class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAM
         val selectionArgs = arrayOf(employeeId.toString())
         db.delete(TABLE_EMPLOYEE, selection, selectionArgs)
         db.close()
+    }
+
+    fun generatePdf(): String {
+        val pdfFileName = "database_export.pdf"
+        val pdfPath =
+            "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/$pdfFileName"
+        val document = Document()
+        val pdfWriter = PdfWriter.getInstance(document, FileOutputStream(pdfPath))
+        document.open()
+        document.add(Paragraph("Employee Database"))
+        val employeeList = getAllEmployees()
+        for (employee in employeeList) {
+            document.add(
+                Paragraph(
+                    "ID: ${employee.id}\n" +
+                            "Name: ${employee.name}\n" +
+                            "Email: ${employee.email}\n" +
+                            "Address: ${employee.address}\n" +
+                            "Phone: ${employee.phone}\n\n"
+                )
+            )
+        }
+        document.close()
+        return pdfPath
     }
 
     companion object {

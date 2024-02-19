@@ -4,6 +4,8 @@ package com.example.sampleapplication
 import DatabaseHelper
 import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sampleapplication.databinding.ActivityHomeBinding
@@ -31,8 +33,18 @@ class HomeActivity : AppCompatActivity(), EmployeeAdapter.EmployeeAdapterListene
         binding.btnCreateEmployee.setOnClickListener {
             startActivity(Intent(this, EmployeeActivity::class.java))
         }
-        binding.btnProducts.setOnClickListener{
+        binding.btnProducts.setOnClickListener {
             startActivity(Intent(this, ProductActivity::class.java))
+        }
+        binding.btnGenerateReport.setOnClickListener {
+            val databaseHelper = DatabaseHelper(this)
+            // Check if the external storage is writable
+            if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+                val pdfPath = databaseHelper.generatePdf()
+                Toast.makeText(this, "PDF generated at: $pdfPath", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "External storage is not writable", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
@@ -48,4 +60,5 @@ class HomeActivity : AppCompatActivity(), EmployeeAdapter.EmployeeAdapterListene
         employeeList.remove(employee)
         adapter.notifyDataSetChanged()
     }
+
 }

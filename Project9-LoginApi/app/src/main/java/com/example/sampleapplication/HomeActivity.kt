@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sampleapplication.databinding.ActivityHomeBinding
+import com.example.sampleapplication.invoice.InvoiceActivity
 import com.itextpdf.text.Document
 import com.itextpdf.text.Paragraph
 import com.itextpdf.text.pdf.PdfWriter
@@ -41,6 +42,7 @@ class HomeActivity : AppCompatActivity(), EmployeeAdapter.EmployeeAdapterListene
         binding.btnProducts.setOnClickListener{
             startActivity(Intent(this, ProductActivity::class.java))
         }
+
         binding.btnGenerateReport.setOnClickListener {
             try {
                 val pdfFile = File(Environment.getExternalStorageDirectory(), "employee_details.pdf")
@@ -74,6 +76,10 @@ class HomeActivity : AppCompatActivity(), EmployeeAdapter.EmployeeAdapterListene
                 e.printStackTrace()
                 Toast.makeText(this, "Error generating PDF", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.btnInvoice.setOnClickListener{
+            startActivity(Intent(this, InvoiceActivity::class.java))
         }
 
 

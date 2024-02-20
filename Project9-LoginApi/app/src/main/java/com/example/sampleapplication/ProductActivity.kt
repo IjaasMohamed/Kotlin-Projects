@@ -16,7 +16,7 @@ class ProductActivity : AppCompatActivity() {
         val apiInterface = RetrofitClient.create()
 
         val request = ApiRequest(
-            listOf(RequestBodyItem(Unique_Id = "some_unique_id", Pw = "some_password")),
+            listOf(RequestBodyItemLogin(Unique_Id = "some_unique_id", Pw = "some_password")),
             "GetItemsData",
             "",
             "EZCMP-1"

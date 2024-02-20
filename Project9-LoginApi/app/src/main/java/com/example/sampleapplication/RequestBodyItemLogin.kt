@@ -1,7 +1,6 @@
 package com.example.sampleapplication
 
-data class RequestBodyItem(
+data class RequestBodyItemLogin(
     val Unique_Id: String,
     val Pw: String
 )
-

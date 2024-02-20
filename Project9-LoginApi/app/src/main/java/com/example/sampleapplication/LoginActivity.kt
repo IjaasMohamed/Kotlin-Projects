@@ -4,6 +4,7 @@ import DatabaseHelper
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.example.sampleapplication.databinding.ActivityLoginBinding
 import retrofit2.Call
@@ -38,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
 
                 val apiInterface = RetrofitClient.create()
                 val request = ApiRequest(
-                    API_Body = listOf(RequestBodyItem(Unique_Id = email, Pw = password)),
+                    API_Body = listOf(RequestBodyItemLogin(Unique_Id = email, Pw = password)),
                     Api_Action = "GetUserData",
                     Sync_Time = "", // Assuming Sync_Time is not required for login
                     Company_Code = email
@@ -87,43 +88,98 @@ class LoginActivity : AppCompatActivity() {
 //            Toast.makeText(this, "Please enter all fields...!", Toast.LENGTH_SHORT).show()
 //        }
 //    }
-private fun loginUser() {
-    val email = binding.textInputEmail.text.toString().trim()
-    val password = binding.textInputPassword.text.toString().trim()
 
-    if (ValidationUtils.isTextNotEmpty(email) &&
-        ValidationUtils.isValidEmail(email) &&
-        ValidationUtils.isTextNotEmpty(password)) {
 
-        val apiInterface = RetrofitClient.create()
-        val request = ApiRequest(
-            API_Body = listOf(RequestBodyItem(Unique_Id = email, Pw = password)),
-            Api_Action = "GetUserData",
-            Sync_Time = "", // Assuming Sync_Time is not required for login
-            Company_Code = email
-        )
+//    private fun loginUser() {
+//        val email = binding.textInputEmail.text.toString().trim()
+//        val password = binding.textInputPassword.text.toString().trim()
+//
+//        if (ValidationUtils.isTextNotEmpty(email) &&
+//            ValidationUtils.isValidEmail(email) &&
+//            ValidationUtils.isTextNotEmpty(password)) {
+//
+//            val apiInterface = RetrofitClient.create()
+//            val request = ApiRequest(
+//                API_Body = listOf(RequestBodyItemLogin(Unique_Id = email, Pw = password)),
+//                Api_Action = "GetUserData",
+//                Sync_Time = "", // Assuming Sync_Time is not required for login
+//                Company_Code = email
+//            )
+//
+//            apiInterface.loginUser(request).enqueue(object : Callback<MyData> {
+//                override fun onResponse(call: Call<MyData>, response: Response<MyData>) {
+//                    if (response.isSuccessful) {
+//                        val myData = response.body()
+//                        Log.d("API Response", "Response Body: $myData")
+//                        if (myData?.Status_Code == 200 ) {
+//                            // Handle successful login
+//                            Toast.makeText(this@LoginActivity, "Logged in successfully!", Toast.LENGTH_SHORT).show()
+//                            navigateToHomeActivity()
+//                        } else {
+//                            // Handle unsuccessful login
+//                            Toast.makeText(this@LoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
+//                        }
+//                    } else {
+//                        // Handle unsuccessful HTTP response
+//                        Toast.makeText(this@LoginActivity, "Request failed with status code: ${response.code()}", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<MyData>, t: Throwable) {
+//                    // Handle network error
+//                    Toast.makeText(this@LoginActivity, "Network error: ${t.localizedMessage}", Toast.LENGTH_SHORT).show()
+//                }
+//            })
+//        } else {
+//            Toast.makeText(this, "Please enter all fields or correct email format", Toast.LENGTH_SHORT).show()
+//        }
+//    }
 
-        apiInterface.loginUser(request).enqueue(object : Callback<MyData> {
-            override fun onResponse(call: Call<MyData>, response: Response<MyData>) {
-                if (response.isSuccessful) {
-                    // Handle successful login
-                    Toast.makeText(this@LoginActivity, "Logged in successfully!", Toast.LENGTH_SHORT).show()
-                    navigateToHomeActivity()
-                } else {
-                    // Handle unsuccessful login
-                    Toast.makeText(this@LoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
+    private fun loginUser() {
+        val email = binding.textInputEmail.text.toString().trim()
+        val password = binding.textInputPassword.text.toString().trim()
+
+        if (ValidationUtils.isTextNotEmpty(email) &&
+            ValidationUtils.isValidEmail(email) &&
+            ValidationUtils.isTextNotEmpty(password)) {
+
+            val apiInterface = RetrofitClient.create()
+            val request = ApiRequest(
+                API_Body = listOf(RequestBodyItemLogin(Unique_Id = email, Pw = password)),
+                Api_Action = "GetUserData",
+                Sync_Time = "", // Assuming Sync_Time is not required for login
+                Company_Code = email
+            )
+
+            apiInterface.loginUser(request).enqueue(object : Callback<MyData> {
+                override fun onResponse(call: Call<MyData>, response: Response<MyData>) {
+                    if (response.isSuccessful) {
+                        val myData = response.body()
+                        Log.d("API Response", "Response Body: $myData")
+                        if (myData?.Status_Code == 200 ) {
+                            // Handle successful login
+                            Toast.makeText(this@LoginActivity, "Logged in successfully!", Toast.LENGTH_SHORT).show()
+                            navigateToHomeActivity()
+                        } else {
+                            // Handle unsuccessful login
+                            Toast.makeText(this@LoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        // Handle unsuccessful HTTP response
+                        Toast.makeText(this@LoginActivity, "Request failed with status code: ${response.code()}", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<MyData>, t: Throwable) {
-                // Handle network error
-                Toast.makeText(this@LoginActivity, "Network error: ${t.localizedMessage}", Toast.LENGTH_SHORT).show()
-            }
-        })
-    } else {
-        Toast.makeText(this, "Please enter all fields or correct email format", Toast.LENGTH_SHORT).show()
+                override fun onFailure(call: Call<MyData>, t: Throwable) {
+                    // Handle network error
+                    Toast.makeText(this@LoginActivity, "Network error: ${t.localizedMessage}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        } else {
+            Toast.makeText(this, "Please enter all fields or correct email format", Toast.LENGTH_SHORT).show()
+        }
     }
-}
+
 
 
     private fun navigateToHomeActivity() {

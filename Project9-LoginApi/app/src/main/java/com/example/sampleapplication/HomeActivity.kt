@@ -39,13 +39,14 @@ class HomeActivity : AppCompatActivity(), EmployeeAdapter.EmployeeAdapterListene
         binding.btnCreateEmployee.setOnClickListener {
             startActivity(Intent(this, EmployeeActivity::class.java))
         }
-        binding.btnProducts.setOnClickListener{
+        binding.btnProducts.setOnClickListener {
             startActivity(Intent(this, ProductActivity::class.java))
         }
 
         binding.btnGenerateReport.setOnClickListener {
             try {
-                val pdfFile = File(Environment.getExternalStorageDirectory(), "employee_details.pdf")
+                val pdfFile =
+                    File(Environment.getExternalStorageDirectory(), "employee_details.pdf")
                 if (!pdfFile.exists()) {
                     pdfFile.createNewFile()
                 }
@@ -71,14 +72,22 @@ class HomeActivity : AppCompatActivity(), EmployeeAdapter.EmployeeAdapterListene
 
                 document.close()
 
-                Toast.makeText(this, "PDF Generated successfully! Saved at ${pdfFile.path}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "PDF Generated successfully! Saved at ${pdfFile.path}",
+                    Toast.LENGTH_LONG
+                ).show()
             } catch (e: Exception) {
                 e.printStackTrace()
                 Toast.makeText(this, "Error generating PDF", Toast.LENGTH_SHORT).show()
             }
         }
 
-        binding.btnInvoice.setOnClickListener{
+        binding.btnInvoice.setOnClickListener {
+            startActivity(Intent(this, InvoiceActivity::class.java))
+        }
+
+        binding.btnItems.setOnClickListener {
             startActivity(Intent(this, InvoiceActivity::class.java))
         }
 

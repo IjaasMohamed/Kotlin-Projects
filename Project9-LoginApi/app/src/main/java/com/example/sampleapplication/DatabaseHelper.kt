@@ -74,7 +74,7 @@ class DatabaseHelper(context: Context) :
         value.put(COL_EMPLOYEE_PHONE, employee.phone)
 
         db.insert(TABLE_EMPLOYEE, null, value)
-        db.close()
+//        db.close()
     }
 //    fun loginUser(email: String, password: String): Boolean {
 //        val db = this.readableDatabase
@@ -119,7 +119,7 @@ class DatabaseHelper(context: Context) :
         }
 
         cursor.close()
-        db.close()
+//        db.close()
         return employeeList
     }
 
@@ -134,7 +134,7 @@ class DatabaseHelper(context: Context) :
         val selection = "$COL_EMPLOYEE_ID = ?"
         val selectionArgs = arrayOf(employee.id.toString())
         db.update(TABLE_EMPLOYEE, values, selection, selectionArgs)
-        db.close()
+//        db.close()
     }
 
     fun deleteEmployee(employeeId: Int) {
@@ -142,7 +142,7 @@ class DatabaseHelper(context: Context) :
         val selection = "$COL_EMPLOYEE_ID = ?"
         val selectionArgs = arrayOf(employeeId.toString())
         db.delete(TABLE_EMPLOYEE, selection, selectionArgs)
-        db.close()
+//        db.close()
     }
 
 
@@ -166,7 +166,7 @@ class DatabaseHelper(context: Context) :
         values.put(COLUMN_SYNC_TIME, item.Sync_Time)
 
         val result = db.insert(TABLE_ITEM, null, values)
-        db.close()
+//        db.close()
 
         // If the result is -1, then an error occurred
         return result != -1L

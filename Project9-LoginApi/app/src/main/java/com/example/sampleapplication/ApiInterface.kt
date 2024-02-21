@@ -10,12 +10,8 @@ import retrofit2.http.POST
 interface ApiInterface {
     @POST("api/External_Api/Mobile_Api/Invoke")
     fun getData(@Body request: ApiRequest): Call<MyDataLogin>
-
-
     @POST("api/External_Api/Mobile_Api/Invoke")
     suspend fun getItemsData(@Body requestBody: ApiRequestBody): ApiResponse
-
-
     @POST("api/External_Api/Mobile_Api/Invoke")
     fun loginUser(@Body request: ApiRequest): Call<MyDataLogin>
 

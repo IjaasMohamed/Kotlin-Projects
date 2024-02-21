@@ -15,3 +15,7 @@ data class ResponseBody(
     val Stock_Handle: Boolean,
     val Sync_Time: String
 )
+data class ResponseBodyLogin(
+    val Email: String,
+    val Doc_Msg: String
+)

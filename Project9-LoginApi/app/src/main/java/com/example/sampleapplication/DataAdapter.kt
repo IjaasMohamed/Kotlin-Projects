@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class DataAdapter(val context: Activity, val data: List<MyData>) :
+class DataAdapter(val context: Activity, val data: List<MyDataLogin>) :
     RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -15,7 +15,7 @@ class DataAdapter(val context: Activity, val data: List<MyData>) :
         private val statusCodeTextView: TextView = itemView.findViewById(R.id.tv_status_code)
         private val syncTimeTextView: TextView = itemView.findViewById(R.id.tv_sync_time)
 
-        fun bind(item: MyData) {
+        fun bind(item: MyDataLogin) {
             messageTextView.text = item.Message
             statusCodeTextView.text = "Status Code: ${item.Status_Code}"
             syncTimeTextView.text = "Sync Time: ${item.Sync_Time}"

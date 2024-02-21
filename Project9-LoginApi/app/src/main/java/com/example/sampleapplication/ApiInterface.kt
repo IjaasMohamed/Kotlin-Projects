@@ -8,10 +8,10 @@ import retrofit2.http.POST
 
 interface ApiInterface {
     @POST("api/External_Api/Mobile_Api/Invoke")
-    fun getData(@Body request: ApiRequest): Call<MyData>
+    fun getData(@Body request: ApiRequest): Call<MyDataLogin>
 
     @POST("api/External_Api/Mobile_Api/Invoke")
-    fun loginUser(@Body request: ApiRequest): Call<MyData>
+    fun loginUser(@Body request: ApiRequest): Call<MyDataLogin>
 
     @POST("api/External_Api/Mobile_Api/Invoke")
     fun sendInvoiceData(@Body requestData: RequestData): Call<ApiResponse>

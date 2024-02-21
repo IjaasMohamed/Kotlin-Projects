@@ -25,13 +25,13 @@ class ProductActivity : AppCompatActivity() {
 
 
         // Make the API call
-        val call: Call<MyData> = apiInterface.getData(request)
+        val call: Call<MyDataLogin> = apiInterface.getData(request)
 
         // Enqueue the call asynchronously
-        call.enqueue(object : Callback<MyData> {
-            override fun onResponse(call: Call<MyData>, response: Response<MyData>) {
+        call.enqueue(object : Callback<MyDataLogin> {
+            override fun onResponse(call: Call<MyDataLogin>, response: Response<MyDataLogin>) {
                 if (response.isSuccessful) {
-                    val data: MyData? = response.body()
+                    val data: MyDataLogin? = response.body()
                     // Update TextViews with data from API response
                     data?.let {
                         findViewById<TextView>(R.id.tv_message).text = it.Message
@@ -45,7 +45,7 @@ class ProductActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<MyData>, t: Throwable) {
+            override fun onFailure(call: Call<MyDataLogin>, t: Throwable) {
                 // Handle network error
                 val textView = findViewById<TextView>(R.id.tv_message)
                 textView.text = "Network error: ${t.localizedMessage}"

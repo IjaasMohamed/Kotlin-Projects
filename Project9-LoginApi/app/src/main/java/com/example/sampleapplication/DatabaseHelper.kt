@@ -23,7 +23,30 @@ class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAM
                 "$COL_EMPLOYEE_ADDRESS TEXT, " +
                 "$COL_EMPLOYEE_PHONE TEXT)"
         db?.execSQL(queryEmployee)
+
+        val createItemsTableQuery = (
+                "CREATE TABLE $ITEMS_TABLE (" +
+                        "$ITEMS_COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "$ITEMS_COLUMN_NAME TEXT, " +
+                        "$ITEMS_COLUMN_CODE TEXT, " +
+                        "$ITEMS_COLUMN_PRINTING_NAME TEXT, " +
+                        "$ITEMS_COLUMN_PRICE REAL)"
+                )
+        db?.execSQL(createItemsTableQuery)
     }
+    // Items Insert
+    fun insertItem(name: String, code: String, printingName: String, price: Double): Long {
+        val values = ContentValues().apply {
+            put(ITEMS_COLUMN_NAME, name)
+            put(ITEMS_COLUMN_CODE, code)
+            put(ITEMS_COLUMN_PRINTING_NAME, printingName)
+            put(ITEMS_COLUMN_PRICE, price)
+        }
+        val db = writableDatabase
+        return db.insert(ITEMS_TABLE, null, values)
+    }
+    // Items Fetch All
+
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
 //        db?.execSQL("DROP TABLE IF EXISTS $TABLE_USER")
@@ -134,5 +157,12 @@ class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAM
         private const val COL_EMPLOYEE_EMAIL = "employee_email"
         private const val COL_EMPLOYEE_ADDRESS = "employee_address"
         private const val COL_EMPLOYEE_PHONE = "employee_phone"
+        // Items
+        const val ITEMS_TABLE = "tbl_item"
+        const val ITEMS_COLUMN_ID = "items_id"
+        const val ITEMS_COLUMN_NAME = "items_name"
+        const val ITEMS_COLUMN_CODE = "items_code"
+        const val ITEMS_COLUMN_PRINTING_NAME = "items_printing_name"
+        const val ITEMS_COLUMN_PRICE = "items_price"
     }
 }

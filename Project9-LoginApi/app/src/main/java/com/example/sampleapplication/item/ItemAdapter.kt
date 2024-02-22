@@ -18,7 +18,7 @@ class ItemAdapter(private val items: List<ResponseBody>) : RecyclerView.Adapter<
         val minusStockTextView: TextView = itemView.findViewById(R.id.minusStockTextView)
         val orderNoTextView: TextView = itemView.findViewById(R.id.orderNoTextView)
         val packSizeTextView: TextView = itemView.findViewById(R.id.packSizeTextView)
-        // Add other views as needed...
+        // Add more items as needed
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {

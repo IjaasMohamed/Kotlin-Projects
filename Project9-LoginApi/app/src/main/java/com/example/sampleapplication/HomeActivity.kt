@@ -88,7 +88,7 @@ class HomeActivity : AppCompatActivity(), EmployeeAdapter.EmployeeAdapterListene
         }
 
         binding.btnItems.setOnClickListener {
-            startActivity(Intent(this, InvoiceActivity::class.java))
+            startActivity(Intent(this, ItemListActivity::class.java))
         }
 
 

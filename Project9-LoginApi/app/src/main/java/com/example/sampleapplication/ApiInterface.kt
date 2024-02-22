@@ -11,7 +11,7 @@ interface ApiInterface {
     @POST("api/External_Api/Mobile_Api/Invoke")
     fun getData(@Body request: ApiRequest): Call<MyDataLogin>
     @POST("api/External_Api/Mobile_Api/Invoke")
-    suspend fun getItemsData(@Body requestBody: ApiRequestBody): ApiResponse
+    suspend fun getItemsData(@Body requestBody: ApiRequestBody): ResponseBody
     @POST("api/External_Api/Mobile_Api/Invoke")
     fun loginUser(@Body request: ApiRequest): Call<MyDataLogin>
 
